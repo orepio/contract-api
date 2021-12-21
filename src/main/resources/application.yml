@@ -1,0 +1,52 @@
+quarkus:
+  banner:
+    enabled: false
+  datasource:
+    db-kind: postgresql
+  hibernate-orm:
+    database:
+      generation: none
+
+"%dev":
+  quarkus:
+    log:
+      level: INFO
+      category:
+        "io.orep":
+          level: DEBUG
+    hibernate-orm:
+      log:
+        sql: true
+    flyway:
+      migrate-at-start: true
+      locations: db/migration,db/testdata
+
+"%test":
+  quarkus:
+    log:
+      level: INFO
+      category:
+        "io.orep":
+          level: DEBUG
+    hibernate-orm:
+      log:
+        sql: true
+    flyway:
+      migrate-at-start: true
+      locations: db/migration,db/testdata
+
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: Contract API
+          version: 0.0.1
+          description: API for retrieving contracts
+          contact:
+            email: techsupport@orep.io
+            name: Contract API Support
+            url: http://orepio.github.io/contract-api
+          license:
+            name: Apache 2.0
+            url: http://www.apache.org/licenses/LICENSE-2.0.html
